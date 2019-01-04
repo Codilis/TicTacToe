@@ -83,20 +83,23 @@ class TicTacToe():
         bestVal = -1000
         choices = []
         self.board = board
-        print(self.board)
+##        print(self.board)
         if len(self.get_free_positions()) == 9:
             return 4
         for pos in self.get_free_positions():
             self.board[pos] = "O"
             val = self.minimax(False, -1000, 1000)
             self.board[pos] = '-'
-            print("for",pos,"val is",val)
+##            print("for",pos,"val is",val)
             if val > bestVal:
                 bestVal = val
                 choices = [pos]
             elif val == bestVal:
                 choices.append(pos)
-        print(choices)
-        return random.choice(choices)
+##        print(choices)
+        if choices != []:
+            return random.choice(choices)
+        else:
+            return None
 
 
