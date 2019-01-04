@@ -133,11 +133,6 @@ class user_interface():
             self.c.unbind("<Button 1>")
             showinfo("Result", res)
             
-        
-
-
-    def end(self, res):
-        print(res)
 
 
 root = tk.Tk()
