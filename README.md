@@ -6,4 +6,4 @@ Tkinter Library of python to create UI.
 To get more details about working of this algorithm refer: https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-3-tic-tac-toe-ai-finding-optimal-move/
 
 
-![my video](https://user-images.githubusercontent.com/24753654/50609155-ec40f580-0ef4-11e9-9735-796729e60bf0.gif)
+![my video](https://user-images.githubusercontent.com/24753654/50685282-92e4dd80-103e-11e9-8cd6-25bf9a5ec5f4.gif)
