@@ -1,5 +1,6 @@
 import tkinter as tk
 from engine import TicTacToe
+from tkinter.messagebox import showinfo
 
 class user_interface():
     def __init__(self, root):
@@ -19,7 +20,7 @@ class user_interface():
         self.center = [[[100, 100], [300, 100], [500, 100]], [[100, 300],
                        [300, 300], [500, 300]],[[100, 500],[300, 500],[500, 500]]]
 
-        self.turn  = True
+        self.result  = 2
         self.board = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]
         self.c = tk.Canvas(root, height=600, width=600, bg='white')
         self.c.pack(fill=tk.BOTH, expand=True)
@@ -42,7 +43,7 @@ class user_interface():
             return True
         return False
 
-    def won():
+    def won(self):
         for i in range(0,3):
             if(self.board[i][0]==self.board[i][1] and
                self.board[i][1]==self.board[i][2]):
@@ -72,6 +73,7 @@ class user_interface():
                     return 1
             elif self.board[2][0]=='O':
                     return -1
+        return 0
 
     def __get_block__(self, eventorigin):
         x = eventorigin.x
@@ -108,11 +110,34 @@ class user_interface():
     def play(self, eventorigion):
         c = self.__draw_peices(eventorigion)
         x = self.board[0]+self.board[1]+self.board[2]
-        if self.won():
-            pass
-        self.move = self.moves[self.bot.findBestMove(x)]
+        t = self.bot.findBestMove(x)
+        if t != None:
+            self.move = self.moves[t]
         if c:
             self.__bot_peices()
+        if self.won() == 1:
+            res = "You Win"
+            self.result = 1
+            self.c.unbind("<Button 1>")
+            showinfo("Result", res)
+            c = False
+        elif self.won() == -1:
+            res = "Bot Win"
+            self.result = -1
+            self.c.unbind("<Button 1>")
+            showinfo("Result", res)
+            c = False
+        if t == None and self.result == 2:
+            res = "Game Over It's a Tie"
+            self.result = 0
+            self.c.unbind("<Button 1>")
+            showinfo("Result", res)
+            
+        
+
+
+    def end(self, res):
+        print(res)
 
 
 root = tk.Tk()
