@@ -109,10 +109,14 @@ class user_interface():
 
     def play(self, eventorigion):
         c = self.__draw_peices(eventorigion)
-        x = self.board[0]+self.board[1]+self.board[2]
-        t = self.bot.findBestMove(x)
-        if t != None:
-            self.move = self.moves[t]
+        if c:
+            x = self.board[0]+self.board[1]+self.board[2]
+            t = self.bot.findBestMove(x)
+        try:
+            if t != None:
+                self.move = self.moves[t]
+        except:
+            pass
         if c:
             self.__bot_peices()
         if self.won() == 1:
@@ -127,12 +131,15 @@ class user_interface():
             self.c.unbind("<Button 1>")
             showinfo("Result", res)
             c = False
-        if t == None and self.result == 2:
-            res = "Game Over It's a Tie"
-            self.result = 0
-            self.c.unbind("<Button 1>")
-            showinfo("Result", res)
-            
+        try:
+            if t == None and self.result == 2:
+                res = "Game Over It's a Tie"
+                self.result = 0
+                self.c.unbind("<Button 1>")
+                showinfo("Result", res)
+        except:
+            pass
+                
 
 
 root = tk.Tk()
